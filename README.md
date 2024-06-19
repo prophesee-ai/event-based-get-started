@@ -11,21 +11,28 @@ provides both high-level tips and very practical information including developme
 
 ## Examples
 
-### Time Surface viewer (Available with **OpenEB**)
+### Time Surface viewer (Available with **Metavision SDK** and **OpenEB**)
 This first sample is a simple timesurface visualization of events. A timesurface is a matrix storing at each pixel the
 timestamp of the last event triggered at this location. It can be further used for processing, such as finding edges in
-the image, computing the optical flow etc. Both C++ and Python samples are provided.
+the image, computing the optical flow etc. Both C++ and Python samples are provided. 
+Further documentation can be found [here](https://docs.prophesee.ai/stable/samples/modules/core/time_surface_cpp.html#chapter-samples-core-time-surface-cpp).
+
 ![Time surface example.](./images/time_surface.png "This is a time surface.")
 
-### Dummy Radar (Available with **Metavision SDK**)
+### Dummy Radar (Available with **Metavision SDK** and **OpenEB**)
 This C++ sample provides some very easy visualization for localizing the most prominent movement in the scene within
 some event rate window. Typically, it allows to localize a person in the camera field of view. The object "distance"
-is estimated relatively to the provided event rates: the closer the person, the more events it will generate.
+is estimated relatively to the provided event rates: the closer the person, the more events it will generate. The 
+detection is visualized as a white strip on top of the green mesh.
+Further documentation can be found [here](https://docs.prophesee.ai/stable/samples/modules/core/radar_cpp.html#chapter-samples-core-radar-cpp).
+
 ![Radar example.](./images/radar_plot.png "Radar display of the camera observation.")
 
 ### Image sharpener from ML Optical Flow (Available with **Metavision SDK**)
 This last Python sample computes the optical flow from input events and uses this flow to apply a sharpening function
-to the live-built image representation of events.
+to the live-built image representation of events. The documentation of this sample as well as the way to retrieve the
+model (`flow_model_alpha.ckpt`) can be found [here](https://docs.prophesee.ai/stable/samples/modules/ml/flow_inference.html).
+
 ![Sharpening example.](./images/image_sharpening.png "Image sharpening from Optical Flow.")
 
 ### Data
@@ -60,10 +67,10 @@ Then, you can run the demos:
 ./bin/dummy_radar.exe             # On Windows
 ```
 
-For Python ones:
+For Python ones, for instance the image sharpener:
 ```
-python3 metavision_time_surface.py # Ubuntu
-python metavision_time_surface.py  # Windows
+python3 flow_inference.py --mode sharp <MODEL_PATH> <RECORD_PATH> # Ubuntu
+python flow_inference.py  --mode sharp <MODEL_PATH> <RECORD_PATH> # Windows
 ```
 
 A configuration file is provided in the **data** folder as an example. In particular, it allows to enable the hardware 
