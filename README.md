@@ -1,9 +1,9 @@
 # Getting started with Metavision
-Easy examples for event processing based on Prophesee **Metavision SDK 4.6.X** (4.6.0 and further minor updates).
+Easy examples for event processing based on Prophesee **Metavision SDK 5.0.X** (5.0.0 and further patch updates).
 
 This repository provides a few C++ and Python examples demonstrating ways to retrieve events from a recording or a live 
-camera and process them to do visualization, processing, or AI. It is meant to facilitate integration of event-based 
-data in your programmation pipelines, to develop POCs, or to help you discover the potential of event-based technology.
+camera and process them to do visualization, processing, or AI. It is designed to streamline the integration of event-based
+data into your programming workflows, to develop POCs, or to help you discover the potential of event-based technology.
 
 For more information about event processing or tips to build your event-based system, have a look at this  
 [application note](https://support.prophesee.ai/portal/en/kb/articles/how-to-build-event-based-application) which 
@@ -31,7 +31,7 @@ Further documentation can be found [here](https://docs.prophesee.ai/stable/sampl
 ### Image sharpener from ML Optical Flow (Available with **Metavision SDK**)
 This last Python sample computes the optical flow from input events and uses this flow to apply a sharpening function
 to the live-built image representation of events. The documentation of this sample as well as the way to retrieve the
-model (`flow_model_alpha.ckpt`) can be found [here](https://docs.prophesee.ai/stable/samples/modules/ml/flow_inference.html).
+model (`flow_model_alpha.ckpt`) can be found [here](https://docs.prophesee.ai/stable/samples/modules/ml/flow_inference_py.html).
 
 ![Sharpening example.](./images/image_sharpening.png "Image sharpening from Optical Flow.")
 

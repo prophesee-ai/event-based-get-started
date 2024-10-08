@@ -6,18 +6,21 @@
 
 import os
 import argparse
-
 import torch
 import numpy as np
 import cv2
+# Temporary solution to fix the numpy deprecated alias in skvideo: https://github.com/scikit-video/scikit-video/issues/154#issuecomment-1445239790
+# Will be deleted in MV-2134 when skvideo makes the correction
+np.float = np.float64
+np.int = np.int_
 from skvideo.io import FFmpegWriter
 import h5py
 from tqdm import tqdm
 
 from metavision_core_ml.video_to_event import SimulatedEventsIterator
 from metavision_ml.flow.lightning_model import FlowModel
-from metavision_ml.data import CDProcessorIterator, HDF5Iterator
 from metavision_ml.flow.viz import get_arrows, get_dense_flow
+from metavision_ml.preprocessing.preprocessor_iterator import CDProcessorIterator, HDF5Iterator
 from metavision_ml.preprocessing.viz import normalize, filter_outliers
 
 from metavision_ml.utils.h5_writer import HDF5Writer
@@ -81,7 +84,7 @@ def _proc(preprocessor, flow_model, mode="arrows", video_process=None,
     """Sub function performing preprocessing inference and visualization. """
 
     for tensor in tqdm(preprocessor):
-        tensor = tensor[None]
+        tensor = tensor[None].to(flow_model.device)
         if mode == 'sharp':
             flow, img = inference_sharpening(flow_model, tensor)
         else:
@@ -163,8 +166,8 @@ def main(path, delta_t, checkpoint_path, write_video="", cuda=False, mode="arrow
         # Update hdf5
         flow_h5 = h5py.File(save, "r+")
         T, C, H, W = flow_h5["flow"].shape
-        flow_start_ts_np = np.arange(0, T * delta_t, delta_t)
-        flow_end_ts_np = np.arange(delta_t, T * delta_t + 1, delta_t)
+        flow_start_ts_np = np.arange(0, T * delta_t, delta_t) + start_ts
+        flow_end_ts_np = np.arange(delta_t, T * delta_t + 1, delta_t) + start_ts
         flow_h5.create_dataset("flow_start_ts", data=flow_start_ts_np, compression="gzip")
         flow_h5.create_dataset("flow_end_ts", data=flow_end_ts_np, compression="gzip")
         flow_h5.close()
