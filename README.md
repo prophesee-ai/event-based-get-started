@@ -1,5 +1,5 @@
 # Getting started with Metavision
-Easy examples for event processing based on Prophesee **Metavision SDK 5.0.X** (5.0.0 and further patch updates).
+Easy examples for event processing compatible with Prophesee **Metavision SDK 5.0 and 5.1**.
 
 This repository provides a few C++ and Python examples demonstrating ways to retrieve events from a recording or a live 
 camera and process them to do visualization, processing, or AI. It is designed to streamline the integration of event-based
