@@ -52,7 +52,7 @@ cmake .. -DMetavisionSDK_DIR=<METAVISION_BUILD_DIR>/generated/share/cmake/Metavi
 -DMetavisionHAL_DIR=<METAVISION_BUILD_DIR>/generated/share/cmake/MetavisionHALCMakePackagesFilesDir/
 -DCMAKE_BUILD_TYPE=Release
 
-make
+cmake --build . --config Release
 ```
 
 If you are working with a local Metavision build, you will need to source the setup file before running one of the apps.
@@ -64,8 +64,8 @@ Then, you can run the demos:
 ```
 ./build/metavision_time_surface # On Ubuntu
 ./build/metavision_dummy_radar  # On Ubuntu
-./bin/metavision_time_surface.exe # On Windows
-./bin/metavision_dummy_radar.exe  # On Windows
+.\build\Release\metavision_time_surface.exe # On Windows
+.\build\Release\metavision_dummy_radar.exe  # On Windows
 ```
 
 For Python samples, for instance the image sharpener, run:
@@ -87,4 +87,5 @@ STC to filter noise and trails of events:
 It can be provided to some samples as a command line argument "-j":
 ```
 ./build/metavision_dummy_radar -j camera_configuration_example.json # On Ubuntu
+.\build\Release\metavision_dummy_radar.exe -j camera_configuration_example.json # On Windows
 ```

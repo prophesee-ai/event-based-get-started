@@ -13,6 +13,12 @@ project(metavision_dummy_radar)
 
 set(CMAKE_CXX_STANDARD 17)
 
+if (MSVC)
+    # For including cmath
+    # Cf https://docs.microsoft.com/en-us/cpp/c-runtime-library/math-constants?redirectedfrom=MSDN&view=vs-2019
+    add_definitions("-D_USE_MATH_DEFINES")
+endif()
+
 find_package(MetavisionSDK COMPONENTS core stream ui REQUIRED)
 find_package(Boost COMPONENTS program_options REQUIRED)
 add_compile_definitions(BOOST_BIND_GLOBAL_PLACEHOLDERS) ## needed to get rid of warning `#pragma message: The practice of declaring the Bind placeholders (_1, _2, ...)`
