@@ -48,9 +48,7 @@ Metavision paths if you are working with a local Metavision build.
 
 ```
 mkdir build && cd build
-cmake .. -DMetavisionSDK_DIR=<METAVISION_BUILD_DIR>/generated/share/cmake/MetavisionSDKCMakePackagesFilesDir/
--DMetavisionHAL_DIR=<METAVISION_BUILD_DIR>/generated/share/cmake/MetavisionHALCMakePackagesFilesDir/
--DCMAKE_BUILD_TYPE=Release
+cmake .. -DMetavisionSDK_DIR=<METAVISION_BUILD_DIR>/generated/share/cmake/MetavisionSDKCMakePackagesFilesDir/ -DMetavisionHAL_DIR=<METAVISION_BUILD_DIR>/generated/share/cmake/MetavisionHALCMakePackagesFilesDir/ -DCMAKE_BUILD_TYPE=Release
 
 cmake --build . --config Release
 ```
